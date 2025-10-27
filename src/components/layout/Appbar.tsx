@@ -12,12 +12,12 @@ import {
   Avatar,
   SvgIcon,
 } from "@mui/material";
-import CashBookIcon from "@/assets/icons/logo.svg";
 import {
   KeyboardArrowDown,
   NotificationsNone,
   Logout,
 } from "@mui/icons-material";
+import LogoFull from "@/components/base/logo/Full";
 
 const Appbar = () => {
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -40,23 +40,7 @@ const Appbar = () => {
           paddingX: "24px",
         }}
       >
-        <Box display="flex" alignItems="center" gap={1}>
-          <SvgIcon component={CashBookIcon} color="primary" />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            color="primary"
-            fontWeight={600}
-            sx={{
-              mr: 2,
-              textDecoration: "none",
-            }}
-          >
-            Cash Book
-          </Typography>
-        </Box>
+        <LogoFull />
 
         <Box sx={{ flexGrow: 0 }}>
           <Box display="flex" gap={2} alignItems="center">
