@@ -1,6 +1,7 @@
 import React from "react";
 import Appbar from "@/components/layout/Appbar";
 import { Box } from "@mui/material";
+import NavHeader from "@/components/layout/NavHeader";
 
 const DashboardLayout = ({
   children,
@@ -8,7 +9,10 @@ const DashboardLayout = ({
   return (
     <div className="dashboard-container">
       <Appbar />
-      <Box sx={{ height: "calc(100vh - 64px)" }}>{children}</Box>
+      <NavHeader />
+      <Box sx={{ maxHeight: "calc(100vh - 188px)", overflowY: "auto" }} px={2}>
+        {children}
+      </Box>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { Wallet } from "@mui/icons-material";
 
 const OverviewPage = () => {
   return (
-    <Grid container direction="column" spacing={2} p={2}>
+    <Grid container direction="column" spacing={2}>
       <Grid container spacing={2}>
         <Grid container size={8}>
           <Grid container size={12}>
