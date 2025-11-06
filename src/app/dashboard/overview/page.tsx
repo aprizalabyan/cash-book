@@ -5,6 +5,8 @@ import { Box, Grid } from "@mui/material";
 import CardWidget from "@/components/base/card/Widget";
 import {
   Wallet,
+  FileDownloadOutlined,
+  FileUploadOutlined,
   DonutLargeOutlined,
   ShowChartRounded,
   FormatListBulletedOutlined,
@@ -12,6 +14,7 @@ import {
 import AllExpenses from "./widgets/all-expenses/AllExpenses";
 import BalanceStatistics from "./widgets/balance-statistics/BalanceStatistics";
 import RecentTransactions from "./widgets/recent-transactions/RecentTransactions";
+import IncomeExpense from "./widgets/income-expense/IncomeExpense";
 
 const OverviewPage = () => {
   return (
@@ -29,13 +32,13 @@ const OverviewPage = () => {
               </CardWidget>
             </Grid>
             <Grid size={3}>
-              <CardWidget title="Widget 2" icon={<Wallet />}>
-                Item 2
+              <CardWidget title="Income" icon={<FileDownloadOutlined />}>
+                <IncomeExpense category="incomes" />
               </CardWidget>
             </Grid>
             <Grid size={3}>
-              <CardWidget title="Widget 3" icon={<Wallet />}>
-                Item 3
+              <CardWidget title="Expense" icon={<FileUploadOutlined />}>
+                <IncomeExpense category="expenses" />
               </CardWidget>
             </Grid>
           </Grid>
