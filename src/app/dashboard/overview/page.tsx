@@ -10,6 +10,7 @@ import {
   DonutLargeOutlined,
   ShowChartRounded,
   FormatListBulletedOutlined,
+  FactCheckOutlined,
   MoreHoriz,
 } from "@mui/icons-material";
 import AllExpenses from "./widgets/all-expenses/AllExpenses";
@@ -17,6 +18,7 @@ import BalanceStatistics from "./widgets/balance-statistics/BalanceStatistics";
 import RecentTransactions from "./widgets/recent-transactions/RecentTransactions";
 import IncomeExpense from "./widgets/income-expense/IncomeExpense";
 import MyBalance from "./widgets/my-balance/MyBalance";
+import GoalProgress from "./widgets/goal-progress/GoalProgress";
 
 const OverviewPage = () => {
   return (
@@ -61,8 +63,8 @@ const OverviewPage = () => {
             </CardWidget>
           </Grid>
           <Grid size={12} height={280}>
-            <CardWidget title="Widget 6" icon={<Wallet />}>
-              Item 6
+            <CardWidget title="Goals & Progress" icon={<FactCheckOutlined />}>
+              <GoalProgress />
             </CardWidget>
           </Grid>
         </Grid>
