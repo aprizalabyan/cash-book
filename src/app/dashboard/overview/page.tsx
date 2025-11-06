@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Icon } from "@mui/material";
 import CardWidget from "@/components/base/card/Widget";
 import {
   Wallet,
@@ -10,11 +10,13 @@ import {
   DonutLargeOutlined,
   ShowChartRounded,
   FormatListBulletedOutlined,
+  MoreHoriz,
 } from "@mui/icons-material";
 import AllExpenses from "./widgets/all-expenses/AllExpenses";
 import BalanceStatistics from "./widgets/balance-statistics/BalanceStatistics";
 import RecentTransactions from "./widgets/recent-transactions/RecentTransactions";
 import IncomeExpense from "./widgets/income-expense/IncomeExpense";
+import MyBalance from "./widgets/my-balance/MyBalance";
 
 const OverviewPage = () => {
   return (
@@ -24,11 +26,11 @@ const OverviewPage = () => {
           <Grid container size={12}>
             <Grid size={6}>
               <CardWidget
-                title="Widget 1"
+                title="My Balance"
                 icon={<Wallet />}
-                filter={<Box>Ini filter</Box>}
+                filter={<Icon><MoreHoriz /></Icon>}
               >
-                Item 1
+                <MyBalance />
               </CardWidget>
             </Grid>
             <Grid size={3}>
