@@ -19,8 +19,14 @@ import RecentTransactions from "./widgets/recent-transactions/RecentTransactions
 import IncomeExpense from "./widgets/income-expense/IncomeExpense";
 import MyBalance from "./widgets/my-balance/MyBalance";
 import GoalProgress from "./widgets/goal-progress/GoalProgress";
+import { useMonthlyStatus } from "./hooks";
 
 const OverviewPage = () => {
+  const { data: ms_data, isLoading: ms_isLoading } = useMonthlyStatus({
+    year: new Date().getFullYear().toString(),
+    month: new Date().toLocaleString("id-ID", { month: "long" }),
+  });
+
   return (
     <Grid container direction="column" spacing={2}>
       <Grid container spacing={2}>
@@ -30,19 +36,31 @@ const OverviewPage = () => {
               <CardWidget
                 title="My Balance"
                 icon={<Wallet />}
-                filter={<Icon><MoreHoriz /></Icon>}
+                filter={
+                  <Icon>
+                    <MoreHoriz />
+                  </Icon>
+                }
               >
                 <MyBalance />
               </CardWidget>
             </Grid>
             <Grid size={3}>
               <CardWidget title="Income" icon={<FileDownloadOutlined />}>
-                <IncomeExpense category="incomes" />
+                <IncomeExpense
+                  category="incomes"
+                  data={ms_data?.income}
+                  isLoading={ms_isLoading}
+                />
               </CardWidget>
             </Grid>
             <Grid size={3}>
               <CardWidget title="Expense" icon={<FileUploadOutlined />}>
-                <IncomeExpense category="expenses" />
+                <IncomeExpense
+                  category="expenses"
+                  data={ms_data?.expense}
+                  isLoading={ms_isLoading}
+                />
               </CardWidget>
             </Grid>
           </Grid>

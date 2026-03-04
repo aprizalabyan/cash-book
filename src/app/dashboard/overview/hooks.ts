@@ -18,3 +18,23 @@ export function useTotalBalance(params: { year: string }) {
     },
   });
 }
+
+export function useMonthlyStatus(params: { year: string; month: string }) {
+  return useQuery({
+    queryKey: ["monthly-status", params],
+    queryFn: async () => {
+      try {
+        const query = new URLSearchParams({
+          year: String(params.year),
+          month: String(params.month),
+        });
+        const res = await fetch(
+          `/cashbook-api/dashboard/monthly-status?${query}`,
+        );
+        return res.json();
+      } catch (err) {
+        throw err;
+      }
+    },
+  });
+}
