@@ -1,11 +1,32 @@
 "use client";
 
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Icon } from "@mui/material";
 import CardWidget from "@/components/base/card/Widget";
-import { Wallet } from "@mui/icons-material";
+import {
+  Wallet,
+  FileDownloadOutlined,
+  FileUploadOutlined,
+  DonutLargeOutlined,
+  ShowChartRounded,
+  FormatListBulletedOutlined,
+  FactCheckOutlined,
+  MoreHoriz,
+} from "@mui/icons-material";
+import AllExpenses from "./widgets/all-expenses/AllExpenses";
+import BalanceStatistics from "./widgets/balance-statistics/BalanceStatistics";
+import RecentTransactions from "./widgets/recent-transactions/RecentTransactions";
+import IncomeExpense from "./widgets/income-expense/IncomeExpense";
+import MyBalance from "./widgets/my-balance/MyBalance";
+import GoalProgress from "./widgets/goal-progress/GoalProgress";
+import { useMonthlyStatus } from "./hooks";
 
 const OverviewPage = () => {
+  const { data: ms_data, isLoading: ms_isLoading } = useMonthlyStatus({
+    year: new Date().getFullYear().toString(),
+    month: new Date().toLocaleString("id-ID", { month: "long" }),
+  });
+
   return (
     <Grid container direction="column" spacing={2}>
       <Grid container spacing={2}>
@@ -13,51 +34,66 @@ const OverviewPage = () => {
           <Grid container size={12}>
             <Grid size={6}>
               <CardWidget
-                title="Widget 1"
+                title="My Balance"
                 icon={<Wallet />}
-                filter={<Box>Ini filter</Box>}
+                filter={
+                  <Icon>
+                    <MoreHoriz />
+                  </Icon>
+                }
               >
-                Item 1
+                <MyBalance />
               </CardWidget>
             </Grid>
             <Grid size={3}>
-              <CardWidget title="Widget 2" icon={<Wallet />}>
-                Item 2
+              <CardWidget title="Income" icon={<FileDownloadOutlined />}>
+                <IncomeExpense
+                  category="incomes"
+                  data={ms_data?.income}
+                  isLoading={ms_isLoading}
+                />
               </CardWidget>
             </Grid>
             <Grid size={3}>
-              <CardWidget title="Widget 3" icon={<Wallet />}>
-                Item 3
+              <CardWidget title="Expense" icon={<FileUploadOutlined />}>
+                <IncomeExpense
+                  category="expenses"
+                  data={ms_data?.expense}
+                  isLoading={ms_isLoading}
+                />
               </CardWidget>
             </Grid>
           </Grid>
           <Grid size={12}>
             <CardWidget
-              title="Widget 5"
-              icon={<Wallet />}
+              title="Balance Statistics"
+              icon={<ShowChartRounded />}
               filter={<Box>Ini filter</Box>}
             >
-              Item 5
+              <BalanceStatistics />
             </CardWidget>
           </Grid>
         </Grid>
         <Grid container size={4}>
-          <Grid size={12} height={360}>
-            <CardWidget title="Widget 4" icon={<Wallet />}>
-              Item 4
+          <Grid size={12} height={420}>
+            <CardWidget title="All Expenses" icon={<DonutLargeOutlined />}>
+              <AllExpenses />
             </CardWidget>
           </Grid>
           <Grid size={12} height={280}>
-            <CardWidget title="Widget 6" icon={<Wallet />}>
-              Item 6
+            <CardWidget title="Goals & Progress" icon={<FactCheckOutlined />}>
+              <GoalProgress />
             </CardWidget>
           </Grid>
         </Grid>
       </Grid>
       <Grid container spacing={2}>
         <Grid size={12}>
-          <CardWidget title="Widget 7" icon={<Wallet />}>
-            Item 7
+          <CardWidget
+            title="Recent Transactions"
+            icon={<FormatListBulletedOutlined />}
+          >
+            <RecentTransactions />
           </CardWidget>
         </Grid>
       </Grid>

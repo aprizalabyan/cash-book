@@ -10,6 +10,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: "/cashbook-api/:path*",
+        destination: `${process.env.API_SERVER}:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -19,9 +19,13 @@ const CardWidget = ({ children, title, icon, filter }: Props) => {
         borderColor: "accentGrey.main",
       }}
     >
-      <CardContent>
-        <Box display="flex" flexDirection="column" gap={2}>
-          <Box display="flex" alignItems="center" justifyContent="space-between">
+      <CardContent sx={{ height: "100%" }}>
+        <Box display="flex" flexDirection="column" gap={2} height="100%">
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+          >
             <Box display="flex" alignItems="center" gap={1}>
               <Box
                 display="flex"
