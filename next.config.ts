@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/cashbook-api/:path*",
-        destination: "http://34.101.77.135:8002/api/v1/:path*",
+        destination: `${process.env.API_SERVER}:path*`,
       },
     ];
   },
