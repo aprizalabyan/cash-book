@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 import { ContentCopy } from "@mui/icons-material";
 import CommonButton from "@/components/base/button/Common";
 import { useTotalBalance } from "../../hooks";
+import { formatCurrency } from "@/utils/formatter";
 
 const MyBalance = () => {
   const { data, isLoading } = useTotalBalance({
@@ -17,7 +18,7 @@ const MyBalance = () => {
       <Box display="flex" flexDirection="column" gap={2}>
         <Box display="flex" alignItems="center" gap={1}>
           <Typography fontSize={24} fontWeight="600" color="textDark">
-            Rp {data.grand_total}
+            {formatCurrency(data?.grand_total)}
           </Typography>
           <Box display="flex" gap={1}>
             <Typography fontSize={12} fontWeight="600" color="primary">

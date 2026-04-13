@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { formatCurrency } from "@/utils/formatter";
 
 interface Props {
   category: "incomes" | "expenses";
@@ -23,7 +24,7 @@ const IncomeExpense = ({ category, data, isLoading }: Props) => {
           Monthly {category}
         </Typography>
         <Typography fontSize={24} fontWeight="600" color="textDark">
-          Rp {data}
+          {formatCurrency(data)}
         </Typography>
         <Box display="flex" gap={1}>
           <Typography fontSize={12} fontWeight="600" color="primary">
