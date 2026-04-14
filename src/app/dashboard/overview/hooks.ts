@@ -1,3 +1,4 @@
+import { TRecentTransactionsResponse } from "@/types/recent-transactions";
 import { useQuery } from "@tanstack/react-query";
 
 export function useTotalBalance(params: { year: string }) {
@@ -79,6 +80,26 @@ export function useBalanceStatistics(params: { year: string }) {
       }));
 
       return { categories, series };
+    },
+  });
+}
+
+export function useRecentTransactions(params: { year: string; limit: number }) {
+  return useQuery({
+    queryKey: ["recent-transactions", params],
+    queryFn: async (): Promise<TRecentTransactionsResponse[]> => {
+      try {
+        const query = new URLSearchParams({
+          year: String(params.year),
+          limit: String(params.limit),
+        });
+        const res = await fetch(
+          `/cashbook-api/dashboard/recent-transactions?${query}`,
+        );
+        return res.json();
+      } catch (err) {
+        throw err;
+      }
     },
   });
 }
