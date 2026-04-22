@@ -1,28 +1,18 @@
-"use client"
+"use client";
 
 import React from "react";
 import BaseChart from "@/components/base/chart/Chart";
-
-const d_lineChart = {
-  categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-  series: [
-    {
-      name: "Income",
-      data: [820, 932, 901, 934, 1290, 1330, 1320],
-      smooth: true,
-      itemStyle: { color: "#017E00" },
-    },
-    {
-      name: "Expense",
-      data: [560, 232, 401, 1234, 1090, 930, 520],
-      smooth: true,
-      itemStyle: { color: "#E53E3E" },
-    },
-  ],
-};
+import { Typography } from "@mui/material";
+import { useBalanceStatistics } from "../../hooks";
 
 const BalanceStatistics = () => {
-  return <BaseChart config={{ type: "line", data: d_lineChart }} />;
+  const { data: chartData, isLoading } = useBalanceStatistics({
+    year: new Date().getFullYear().toString(),
+  });
+
+  if (isLoading) return <Typography fontSize={12}>Loading...</Typography>;
+  if (!chartData) return <Typography fontSize={12}>No data available</Typography>;
+  return <BaseChart config={{ type: "line", data: chartData }} />;
 };
 
 export default BalanceStatistics;
